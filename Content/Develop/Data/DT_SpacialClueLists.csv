@@ -1,0 +1,19 @@
+---,AcquiredByAbility,Category,ID,Name,Description,Type,bIsActive,bIsAutoActive,bIsKey,RequiredNodeChecks,RequiredNodes,UnlocksNodes
+0,None,환경,0,기본,,Clue,FALSE,FALSE,FALSE,0,,
+1,ObjectHistory,환경,1,서재 문 이력,[6시간 전] 열림\n[4시간 전] 잠김 - 접촉 없음\n[3.5시간 전] 열림,Clue,FALSE,TRUE,TRUE,0,,
+2,ObjectHistory,환경,2,금고 이력,[4시간 전] 열쇠 없이 열림\n물체 꺼내짐,Clue,FALSE,TRUE,TRUE,0,,
+3,ManaResidue,능력,3,문 주변 마나 잔향,"4시간 전, 중간 강도",Clue,FALSE,TRUE,TRUE,0,,
+4,ManaResidue,능력,4,금고 주변 마나 잔향,"4시간 전, 강한 강도",Clue,FALSE,TRUE,TRUE,0,,
+5,EmotionDetection,증언,5,앨리스 진술,'서재는 아무도 들어가지 않았어요'\n감지: 불안(0.6),Clue,FALSE,TRUE,FALSE,0,,
+6,EmotionDetection,증언,6,베네딕트 진술,'서재엔 들어가지도 않았는데요'\n감지: 불안(0.8),Clue,FALSE,TRUE,TRUE,0,,
+7,General,정보,7,능력자 데이터베이스,베네딕트 = 텔레키네시스 숙련자,Clue,FALSE,FALSE,TRUE,0,,
+8,ObjectHistory,환경,8,금고 정밀 조사,정밀 조작 흔적 발견\n텔레키네시스 특징,Clue,FALSE,FALSE,FALSE,0,,
+9,ObjectHistory,환경,9,앨리스 책상 서랍,남성 손자국 (앨리스 아님),Clue,FALSE,FALSE,FALSE,0,,
+10,None,추론,101,초능력 침입,누군가 초능력으로 문을 잠갔다,Deduction,FALSE,FALSE,TRUE,0,"1,3",7
+11,None,추론,102,초능력 금고,금고가 초능력으로 열렸다,Deduction,FALSE,FALSE,TRUE,0,"2,4",8
+12,None,추론,103,앨리스 의혹,앨리스가 뭔가 숨기고 있다,Deduction,FALSE,FALSE,FALSE,0,"2,5",9
+13,None,추론,104,베네딕트 침입,베네딕트가 초능력으로 침입했다,Deduction,FALSE,FALSE,TRUE,0,"101,7",
+14,None,추론,105,앨리스 무고,앨리스는 범인이 아니다,Deduction,FALSE,FALSE,FALSE,0,"103,9",
+15,None,의문,201,누가 텔레키네시스?,누가 텔레키네시스를 보유했는가?\n→ 능력자 DB 확인 권장,Question,FALSE,FALSE,FALSE,0,,
+16,None,의문,202,어떻게 금고를?,어떻게 금고를 열쇠 없이 열었는가?\n→ 금고 정밀 조사 권장,Question,FALSE,FALSE,FALSE,0,,
+17,None,의문,203,앨리스 공범?,앨리스가 공범일 가능성은?\n→ 추가 조사 필요,Question,FALSE,FALSE,FALSE,0,,

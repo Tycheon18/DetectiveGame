@@ -1,0 +1,160 @@
+[
+	{
+		"Name": "Node_501_Intro",
+		"NodeID": 501,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "안녕하세요, 탐정님.",
+		"bIsAutoProgress": true,
+		"NextNodeID": 502,
+		"Choices": [],
+		"AnimationState": "Idle"
+	},
+	{
+		"Name": "Node_502_Opening",
+		"NodeID": 502,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "오늘 이상한 일이 있었어요.",
+		"bIsAutoProgress": true,
+		"NextNodeID": 503,
+		"Choices": [],
+		"AnimationState": "Talking"
+	},
+	{
+		"Name": "Node_503_MainMenu",
+		"NodeID": 503,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "무엇을 물어보시겠습니까?",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "사무실에 대해 물어본다",
+				"NextNodeID": 510,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			},
+			{
+				"ChoiceText": "그날 밤에 대해 물어본다",
+				"NextNodeID": 520,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			},
+			{
+				"ChoiceText": "알리바이를 확인한다",
+				"NextNodeID": 530,
+				"RequiredClueIDs": [ 1, 2 ],
+				"RewardClueID": 0
+			},
+			{
+				"ChoiceText": "[대화 종료]",
+				"NextNodeID": -1,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Focused"
+	},
+	{
+		"Name": "Node_510_Office",
+		"NodeID": 510,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "사무실은 항상 깨끗하게 유지되죠. 제가 IT 담당이라 보안에도 신경 쓰고 있습니다.",
+		"bIsAutoProgress": true,
+		"NextNodeID": 503,
+		"Choices": [],
+		"AnimationState": "Explaining"
+	},
+	{
+		"Name": "Node_520_Night",
+		"NodeID": 520,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "그날 밤은 집에 있었어요. 평소처럼 넷플릭스를 보고 있었죠.",
+		"bIsAutoProgress": true,
+		"NextNodeID": 521,
+		"Choices": [],
+		"AnimationState": "Talking"
+	},
+	{
+		"Name": "Node_521_NightContinued",
+		"NodeID": 521,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "증명할 수 있는 사람은... 없네요. 혼자 살거든요.",
+		"bIsAutoProgress": true,
+		"NextNodeID": 503,
+		"Choices": [],
+		"AnimationState": "Idle"
+	},
+	{
+		"Name": "Node_530_Alibi",
+		"NodeID": 530,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "그날 밤... 사실은... 말씀드리기 곤란한데...",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "계속 말해주세요. 진실이 중요합니다.",
+				"NextNodeID": 531,
+				"RequiredClueIDs": [],
+				"RewardClueID": 10
+			},
+			{
+				"ChoiceText": "나중에 다시 묻겠습니다.",
+				"NextNodeID": 503,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Angry"
+	},
+	{
+		"Name": "Node_531_Truth",
+		"NodeID": 531,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "저는... 범인을 목격했습니다! 하지만 두려워서 말하지 못했어요. 그 사람은...",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "누구였습니까?",
+				"NextNodeID": 532,
+				"RequiredClueIDs": [],
+				"RewardClueID": 11
+			},
+			{
+				"ChoiceText": "천천히 말씀해주세요.",
+				"NextNodeID": 532,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Explaining"
+	},
+	{
+		"Name": "Node_532_Revelation",
+		"NodeID": 532,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "Jordan이었습니다. 그날 밤 늦게 사무실에 몰래 들어오는 걸 봤어요.",
+		"bIsAutoProgress": true,
+		"NextNodeID": 533,
+		"Choices": [],
+		"AnimationState": "Explaining"
+	},
+	{
+		"Name": "Node_533_End",
+		"NodeID": 533,
+		"SpeakerName": "Alex Chen",
+		"DialogueText": "이제 다 말씀드렸어요... 부디 조심하세요.",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "중요한 증언 감사합니다.",
+				"NextNodeID": -1,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Idle"
+	}
+]

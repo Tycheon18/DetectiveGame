@@ -1,0 +1,134 @@
+[
+	{
+		"Name": "Node_1",
+		"NodeID": 1,
+		"SpeakerName": "하녀 엘렌",
+		"DialogueText": "그날 저녁 집에 아무도 없었어요... 저도 일찍 퇴근했거든요.",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "정말로 아무도 없었나요?",
+				"NextNodeID": 2,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			},
+			{
+				"ChoiceText": "이상한 소리를 들었나요?",
+				"NextNodeID": 3,
+				"RequiredClueIDs": [ 7 ],
+				"RewardClueID": 0
+			},
+			{
+				"ChoiceText": "[대화 종료]",
+				"NextNodeID": -1,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Focused"
+	},
+	{
+		"Name": "Node_2",
+		"NodeID": 2,
+		"SpeakerName": "하녀 엘렌",
+		"DialogueText": "네, 정말이에요! 저는 6시에 퇴근했고, 주인님은 7시에 나가셨어요.",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "주인님은 어디로 가셨나요?",
+				"NextNodeID": 4,
+				"RequiredClueIDs": [],
+				"RewardClueID": 205
+			},
+			{
+				"ChoiceText": "[돌아가기]",
+				"NextNodeID": 1,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Talking"
+	},
+	{
+		"Name": "Node_3",
+		"NodeID": 3,
+		"SpeakerName": "하녀 엘렌",
+		"DialogueText": "아... 그건... 말하기 곤란한데...",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "창문 쪽에서 소리가 났나요?",
+				"NextNodeID": 5,
+				"RequiredClueIDs": [],
+				"RewardClueID": 201
+			},
+			{
+				"ChoiceText": "[돌아가기]",
+				"NextNodeID": 1,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Idle"
+	},
+	{
+		"Name": "Node_4",
+		"NodeID": 4,
+		"SpeakerName": "하녀 엘렌",
+		"DialogueText": "클럽에 가신다고 하셨어요. 항상 금요일마다 가시거든요.",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "[돌아가기]",
+				"NextNodeID": 1,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Explaining"
+	},
+	{
+		"Name": "Node_5",
+		"NodeID": 5,
+		"SpeakerName": "하녀 엘렌",
+		"DialogueText": "네... 창문이 열리는 소리를 들었어요. 하지만 무서워서 확인하지 못했어요!",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "중요한 증언입니다. 감사합니다.",
+				"NextNodeID": 6,
+				"RequiredClueIDs": [],
+				"RewardClueID": 202
+			},
+			{
+				"ChoiceText": "[돌아가기]",
+				"NextNodeID": 1,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Explaining"
+	},
+	{
+		"Name": "Node_6",
+		"NodeID": 6,
+		"SpeakerName": "하녀 엘렌",
+		"DialogueText": "도움이 되었으면 좋겠어요...",
+		"bIsAutoProgress": false,
+		"NextNodeID": -1,
+		"Choices": [
+			{
+				"ChoiceText": "[대화 종료]",
+				"NextNodeID": -1,
+				"RequiredClueIDs": [],
+				"RewardClueID": 0
+			}
+		],
+		"AnimationState": "Idle"
+	}
+]

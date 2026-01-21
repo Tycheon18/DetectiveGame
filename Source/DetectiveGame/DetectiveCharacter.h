@@ -1,0 +1,41 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Character.h"
+#include "DetectiveCharacter.generated.h"
+
+UCLASS()
+class DETECTIVEGAME_API ADetectiveCharacter : public ACharacter
+{
+	GENERATED_BODY()
+
+public:
+	// Sets default values for this character's properties
+	ADetectiveCharacter();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Detective")
+	class UTraceComponent* TraceComponent;
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = "Detective")
+	void AddInteractComponent(class UInteractionComponent* NewComponent);
+
+	UFUNCTION(BlueprintCallable, Category = "Detective")
+	void RemoveInteractComponent(class UInteractionComponent* OldComponent);
+};
