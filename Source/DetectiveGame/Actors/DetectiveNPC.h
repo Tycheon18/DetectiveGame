@@ -28,12 +28,21 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
-
-
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detective")
 	class UDialogueComponent* DialogueComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detective")
 	class UInteractionComponent* InteractionComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detective")
+	class UCinematicCameraComponent* CinematicCameraComponent;
+
+protected:
+	/** 대화 시작 시 자동으로 카메라 활성화 */
+	UFUNCTION()
+	void OnDialogueStarted(AActor* InActor);
+
+	/** 대화 종료 시 자동으로 카메라 비활성화 */
+	UFUNCTION()
+	void OnDialogueFinished();
 };

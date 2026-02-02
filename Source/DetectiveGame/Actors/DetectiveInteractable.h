@@ -23,9 +23,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-
 public:
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* StaticMesh;
 
@@ -34,4 +32,24 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detective")
 	class USphereComponent* InteractionSphere;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detective")
+	class UCinematicCameraComponent* CinematicCameraComponent;
+
+	/** 인터랙션 시 카메라 클로즈업 사용 여부 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detective|Camera")
+	bool bUseCloseUpCamera = true;
+
+	/** 클로즈업 지속 시간 (초, 0이면 수동 해제) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Detective|Camera", meta = (EditCondition = "bUseCloseUpCamera"))
+	float CloseUpDuration = 2.0f;
+
+protected:
+	/** 인터랙션 시 카메라 클로즈업 */
+	UFUNCTION()
+	void OnInteracted(AActor* InActor);
+
+	/** 타이머로 카메라 자동 복귀 */
+	FTimerHandle CloseUpTimerHandle;
+	void DeactivateCloseUpCamera();
 };
