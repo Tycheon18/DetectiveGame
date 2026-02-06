@@ -46,6 +46,17 @@ protected:
 
 protected:
 
+	UPROPERTY()
+	bool bIsRotating = false;
+
+	UPROPERTY()
+	FRotator TargetRotation;
+
+	UPROPERTY(EditAnywhere, Category = "Interaction")
+	float RotationSpeed = 180.0f;
+
+	UPROPERTY(EditAnywhere, Category = "Interaction")
+	bool bEnableRotation = false;
 
 public:
 
@@ -71,4 +82,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Interact(class ADetectivePlayerController* InController);
+
+	UFUNCTION(BlueprintCallable)
+	void SetEnableRotation(bool bEnable) { bEnableRotation = bEnable; }
+
+	UFUNCTION(BlueprintCallable)
+	void StartRotateToPlayer(class AActor* InActor);
 };

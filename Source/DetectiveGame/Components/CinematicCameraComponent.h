@@ -40,6 +40,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cinematic Camera", meta = (ClampMin = "0.1", ClampMax = "3.0"))
 	float BlendTime = 1.0f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cinematic Camera")
+	float BlendExp = 3.0f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cinematic Camera", meta = (ClampMin = "90.0", ClampMax = "720.0"))
 	float RotationSpeed = 360.0f;
 
@@ -59,6 +62,7 @@ public:
 
 	UPROPERTY()
 	bool bIsRotating = false;
+
 
 	UPROPERTY()
 	FRotator TargetRotation;

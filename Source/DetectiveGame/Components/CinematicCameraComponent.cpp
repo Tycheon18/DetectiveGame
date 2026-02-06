@@ -22,13 +22,16 @@ void UCinematicCameraComponent::BeginPlay()
 	if (CameraPoint && GetOwner())
 	{
 		CameraPoint->AttachToComponent(GetOwner()->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
-		CameraPoint->SetRelativeLocation(FVector(200.f, 100.f, 80.0f));
+		//CameraPoint->SetRelativeLocation(FVector(200.f, 100.f, 80.0f));
+	
+		CameraPoint->RegisterComponent();
 	}
 
 	CachedPlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 
 	CreateTempCamera();
 
+	UpdateCameraTransform();
 }
 
 void UCinematicCameraComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -91,14 +94,14 @@ void UCinematicCameraComponent::ActivateCamera()
 
 	UpdateCameraTransform();
 
-	CachedPlayerController->SetViewTargetWithBlend(TempCamera, BlendTime, EViewTargetBlendFunction::VTBlend_EaseInOut);
+	CachedPlayerController->SetViewTargetWithBlend(TempCamera, BlendTime, EViewTargetBlendFunction::VTBlend_EaseInOut, BlendExp);
 
 	bIsCameraActive = true;
 
-	if (bRotateOwnerToPlayer)
-	{
-		StartRotateToPlayer();
-	}
+	//if (bRotateOwnerToPlayer)
+	//{
+	//	StartRotateToPlayer();
+	//}
 
 	UE_LOG(LogTemp, Log, TEXT("[CinematicCamera] Camera activated on %s (BlendTime: %.2f)"),
 		*GetOwner()->GetName(), BlendTime);
@@ -113,7 +116,7 @@ void UCinematicCameraComponent::DeactivateCamera()
 
 	if (PreviousViewTarget)
 	{
-		CachedPlayerController->SetViewTargetWithBlend(PreviousViewTarget, BlendTime, EViewTargetBlendFunction::VTBlend_EaseInOut);
+		CachedPlayerController->SetViewTargetWithBlend(PreviousViewTarget, BlendTime, EViewTargetBlendFunction::VTBlend_EaseInOut, BlendExp);
 	}
 
 	bIsCameraActive = false;

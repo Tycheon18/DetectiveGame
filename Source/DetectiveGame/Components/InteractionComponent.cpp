@@ -4,6 +4,7 @@
 #include "InteractionComponent.h"
 #include "Components/SphereComponent.h"
 #include "DialogueComponent.h"
+#include "CinematicCameraComponent.h"
 #include "../DetectivePlayerState.h"
 #include "../DetectiveManager.h"
 #include "../DetectivePlayerController.h"
@@ -50,6 +51,18 @@ void UInteractionComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+	if (bIsRotating && GetOwner())
+	{
+		FRotator CurrentRotation = GetOwner()->GetActorRotation();
+		FRotator NewRotation = FMath::RInterpConstantTo(CurrentRotation, TargetRotation, DeltaTime, RotationSpeed);
+		GetOwner()->SetActorRotation(NewRotation);
+
+		if (NewRotation.Equals(TargetRotation, 1.0f))
+		{
+			bIsRotating = false;
+			SetComponentTickEnabled(false);
+		}
+	}
 }
 
 void UInteractionComponent::HandleBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -90,7 +103,6 @@ void UInteractionComponent::Interact(ADetectivePlayerController* InController)
 {
 	UE_LOG(LogTemp, Warning, TEXT("[InteractionComponent] Interact is Called"));
 
-
 	if (InController)
 	{
 		if (bHasLinkedClue)
@@ -104,6 +116,19 @@ void UInteractionComponent::Interact(ADetectivePlayerController* InController)
 
 		if (Owner)
 		{
+			UCinematicCameraComponent* CineCamComp = Owner->FindComponentByClass<UCinematicCameraComponent>();
+
+			if (CineCamComp)
+			{
+				StartRotateToPlayer(InController->GetPawn());
+
+				CineCamComp->CameraPoint->SetRelativeRotation(TargetRotation);
+
+				CineCamComp->CachedPlayerController = InController;
+				CineCamComp->ActivateCamera();
+				UE_LOG(LogTemp, Log, TEXT("[InteractionComponent] Activated cinematic camera via CinematicCameraComponent"));
+			}
+
 			UDialogueComponent* DialogueComp = Owner->FindComponentByClass<UDialogueComponent>();
 			if(DialogueComp)
 			{
@@ -112,11 +137,35 @@ void UInteractionComponent::Interact(ADetectivePlayerController* InController)
 
 				return;
 			}
+
+
 		}
 
 		TryAcquireClue(PS);
 
 	}
+}
+
+void UInteractionComponent::StartRotateToPlayer(AActor* InActor)
+{
+
+	UE_LOG(LogTemp, Warning, TEXT("[InteractionComponent] StartRotateToPlayer called"));
+
+	if (!bEnableRotation || !GetOwner() || !InActor)
+		return;
+
+	UE_LOG(LogTemp, Warning, TEXT("[InteractionComponent] StartRotateToPlayer is Accessed"));
+
+	// 타겟 회전 계산 (Yaw만)
+	FVector Direction = InActor->GetActorLocation() - GetOwner()->GetActorLocation();
+	Direction.Z = 0.0f;
+	TargetRotation = Direction.Rotation();
+
+	UE_LOG(LogTemp, Warning, TEXT("[InteractionComponent] TargetRotation: %s"), *TargetRotation.ToString());
+
+	// 회전 시작
+	bIsRotating = true;
+	SetComponentTickEnabled(true);
 }
 
 
